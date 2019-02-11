@@ -1,31 +1,23 @@
 package sample;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-
-import java.io.File;
-import java.io.IOException;
-import java.rmi.server.ExportException;
 
 public class Main extends Application {
 
     Scene scene1, scene2, scene3, scene4;
+    boolean b1stat, b2stat, b3stat, b4stat, b5stat, b6stat;
 
     //add the police song message in a bottle or one of the instrumentals or both
     @Override
     public void start(Stage primaryStage)throws Exception {
         primaryStage.setTitle("SceneTest");
-
+        Label desc = new Label();
 //Scene 1
         Label label1= new Label("This is the first scene");
         Button button1= new Button("Go to scene 2");
@@ -68,7 +60,7 @@ public class Main extends Application {
 
 
         Pane layout2 = new Pane();
-        layout2.getChildren().addAll(label2, button2, bot1, bot2, bot3, bot4, bot5, bot6,yourship,theirship,treasureisland);
+        layout2.getChildren().addAll(label2, button2, bot1, bot2, bot3, bot4, bot5, bot6,yourship,theirship,treasureisland,desc);
 
         bot1.relocate(215.0,215.0);
         bot1.resize(70.0,70.0);
@@ -83,15 +75,30 @@ public class Main extends Application {
         bot6.relocate(933.0,390.0);
         bot6.resize(70.0,70.0);
         layout2.setId("s2");
+
+        desc.resize(1000,200);
+        desc.relocate(100,700);
+        desc.setText("Time to start your voyage! Click on the first bottle.");
+
         scene2= new Scene(layout2,1200,800);
 
+
+        bot1.setOnAction(event -> Controller.clickedButton(desc, b1stat, 1, primaryStage, scene3));
+        bot2.setOnAction(event -> Controller.clickedButton(desc, b1stat, 2, primaryStage, scene3));
+        bot3.setOnAction(event -> Controller.clickedButton(desc, b1stat, 3, primaryStage, scene3));
+        bot4.setOnAction(event -> Controller.clickedButton(desc, b1stat, 4, primaryStage, scene3));
+        bot5.setOnAction(event -> Controller.clickedButton(desc, b1stat, 5, primaryStage, scene3));
+        bot6.setOnAction(event -> Controller.clickedButton(desc, b1stat, 6, primaryStage, scene3));
 
 //Scene 3
         Label label3 = new Label("This is the third scene");
         Button button3 = new Button("Go to scene 4");
         button3.setOnAction(event -> primaryStage.setScene(scene4));
         Pane layout3 = new Pane();
-        layout3.getChildren().addAll(label3, button3);
+
+        TextField usermessage = new TextField();
+
+        layout3.getChildren().addAll(label3, button3, usermessage);
         scene3= new Scene(layout3,1200,800);
         layout3.setId("s3");
 
