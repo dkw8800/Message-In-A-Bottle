@@ -12,7 +12,6 @@ public class Main extends Application {
 
     Scene scene1, scenebtwn, scene2, scene3, scene4;
     boolean b1stat, b2stat, b3stat, b4stat, b5stat, b6stat;
-
     //add the police song message in a bottle or one of the instrumentals or both
     @Override
     public void start(Stage primaryStage)throws Exception {
@@ -57,6 +56,7 @@ public class Main extends Application {
         Button yourship = new Button("");
         Button theirship = new Button("");
         Button treasureisland = new Button("");
+        Button bottleinst = new Button("                    \n                     \n                     \n                     \n");
 
         bot1.setId("b1");
         bot2.setId("b2");
@@ -68,14 +68,17 @@ public class Main extends Application {
         yourship.setId("yours");
         theirship.setId("theirs");
         treasureisland.setId("treasure");
+        bottleinst.setId("btlemain");
         yourship.relocate(50.0,400.0);
         theirship.relocate(300.0,100.0);
         treasureisland.relocate(850,500);
+        bottleinst.relocate(10,700);
+        //bottleinst.resize(1000,100);
         //ENDOFMAINGAMESETUP
 
 
         Pane layout2 = new Pane();
-        layout2.getChildren().addAll(label2, button2, bot1, bot2, bot3, bot4, bot5, bot6,yourship,theirship,treasureisland,desc);
+        layout2.getChildren().addAll(label2, button2, bot1, bot2, bot3, bot4, bot5, bot6,yourship,theirship,treasureisland,desc,bottleinst);
 
         bot1.relocate(215.0,215.0);
         bot1.resize(70.0,70.0);
@@ -94,19 +97,21 @@ public class Main extends Application {
         desc.resize(1000,200);
         desc.relocate(100,700);
         desc.setText("Time to start your voyage! Click on the first bottle.");
+        desc.setId("dsc");
 
         scene2= new Scene(layout2,1200,800);
 
 
-        bot1.setOnAction(event -> Controller.clickedButton(desc, b1stat, 1, primaryStage, scene3));
-        bot2.setOnAction(event -> Controller.clickedButton(desc, b1stat, 2, primaryStage, scene3));
-        bot3.setOnAction(event -> Controller.clickedButton(desc, b1stat, 3, primaryStage, scene3));
-        bot4.setOnAction(event -> Controller.clickedButton(desc, b1stat, 4, primaryStage, scene3));
-        bot5.setOnAction(event -> Controller.clickedButton(desc, b1stat, 5, primaryStage, scene3));
-        bot6.setOnAction(event -> Controller.clickedButton(desc, b1stat, 6, primaryStage, scene3));
+        bot1.setOnAction(event -> Controller.clickedButton(desc, b1stat, 1, primaryStage, scene3,bot1));
+        bot2.setOnAction(event -> Controller.clickedButton(desc, b2stat, 2, primaryStage, scene3,bot2));
+        bot3.setOnAction(event -> Controller.clickedButton(desc, b3stat, 3, primaryStage, scene3,bot3));
+        bot4.setOnAction(event -> Controller.clickedButton(desc, b4stat, 4, primaryStage, scene3,bot4));
+        bot5.setOnAction(event -> Controller.clickedButton(desc, b5stat, 5, primaryStage, scene3,bot5));
+        bot6.setOnAction(event -> Controller.clickedButton(desc, b6stat, 6, primaryStage, scene3,bot6));
         yourship.setOnAction(event -> Controller.clickedYourShip(desc));
         theirship.setOnAction(event -> Controller.clickedTheirShip(desc));
-
+        treasureisland.setOnAction(event -> Controller.clickedIsland(desc));
+        bottleinst.setOnAction(event -> Controller.clickedmain(desc));
 //Scene 3
         Label label3 = new Label("This is the third scene");
         Button button3 = new Button("Go to scene 4");
@@ -116,7 +121,7 @@ public class Main extends Application {
 
 
         TextArea userbox = new TextArea("Start writing your message here!");
-        Label criteria = new Label("Run, you fools.");
+        Label criteria = new Label("Bottle Rules \n");
         userbox.setId("usebx");
         criteria.setId("crit");
         userbox.setWrapText(true);
@@ -127,9 +132,10 @@ public class Main extends Application {
 
         Button submitMessage = new Button("Send Message");
         submitMessage.setId("submsg");
-        submitMessage.setOnAction(event -> Controller.submitmsg(userbox));
+        submitMessage.setOnAction(event -> Controller.submitmsg(userbox, primaryStage, scene2));
+        submitMessage.relocate(400,550);
 
-        layout3.getChildren().addAll(label3, button3, userbox, criteria);
+        layout3.getChildren().addAll(label3, button3, userbox, criteria, submitMessage);
         scene3= new Scene(layout3,1200,800);
         layout3.setId("s3");
 

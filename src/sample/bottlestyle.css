@@ -1,7 +1,7 @@
 #s1
 {
 -fx-background-image:url("/sample/Pictures/bottlestartscreen.jpg");
--fx-background-size: 1200px;
+-fx-background-size: 1200 800;
 }
 
 #sbtwn
@@ -33,12 +33,18 @@
 -fx-background-size: 118px;
 }
 
+#s3
+{
+-fx-background-color:lightblue;
+}
+
 #s4
 {
 -fx-background-image:url("/sample/Pictures/treasure.jpg");
+-fx-background-size: 1200 800;
 }
 
-#st, #stoff
+#st, #stoff, #submsg
 {
 -fx-background-color:white;
 -fx-padding:30 125;
@@ -68,12 +74,23 @@
 -fx-background-position: center 1px;
 }
 
-#s3
-{
--fx-background-color:lightblue;
-}
-
 #crit,#usebx
 {
 -fx-background-color:white;
+-fx-padding:30px;
 }
+
+#dsc
+{
+-fx-background-color:white;
+-fx-padding:30px;
+-fx-font-size:20;
+}
+
+#btlemain
+{
+-fx-background-image:url("/sample/Pictures/bottle.jpg");
+-fx-background-size:80;
+}
+
+

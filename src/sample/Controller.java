@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
@@ -8,8 +9,12 @@ import javafx.scene.Scene;
 
 
 public class Controller {
-    public static void submitmsg(TextArea text) {
+    public static int[] openedbtles = {0,0,0,0,0,0,0};
+
+    public static void submitmsg(TextArea text, Stage stage, Scene scene) {
         String usermessage = text.getText();
+        //ifrulesaremet
+        stage.setScene(scene);
     }
 
     public static void clickedYourShip(Label texter) {
@@ -20,16 +25,22 @@ public class Controller {
         texter.setText("This is your friend's ship.");
     }
 
-    public void clickedIsland(ActionEvent actionEvent, Label texter) {
+    public static void clickedmain(Label texter) {texter.setText("Click on the next bottle."); }
+
+    public static void clickedIsland(Label texter) {
         texter.setText("Could the treasure be here?");
     }
 
-    public static void clickedButton(Label texter, boolean opened, int bottle, Stage stage, Scene scene) {
-        if(opened == false) {
+    public static void clickedButton(Label texter, boolean opened, int bottle, Stage stage, Scene scene, Button button) {
+
+        if(openedbtles[bottle] == 0) {
             texter.setText("Let's open bottle " + bottle + "!");
+            button.setOpacity(0.3);
+            opened = true;
             //setanimation
             //wait(2000);
             //setanimation
+            openedbtles[bottle] = bottle;
             stage.setScene(scene);
         }
         else
@@ -38,23 +49,4 @@ public class Controller {
         }
     }
 
-    public void clickedB2(ActionEvent actionEvent, Label texter) {
-        texter.setText("This is your ship.");
-    }
-
-    public void clickedB3(ActionEvent actionEvent, Label texter) {
-        texter.setText("This is your ship.");
-    }
-
-    public void clickedB4(ActionEvent actionEvent, Label texter) {
-        texter.setText("This is your ship.");
-    }
-
-    public void clickedB5(ActionEvent actionEvent, Label texter) {
-        texter.setText("This is your ship.");
-    }
-
-    public void clickedB6(ActionEvent actionEvent, Label texter) {
-        texter.setText("This is your ship.");
-    }
 }
