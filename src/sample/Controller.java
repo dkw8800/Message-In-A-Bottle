@@ -1,17 +1,22 @@
 package sample;
 
 import javafx.event.ActionEvent;
+import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import javafx.scene.Scene;
 
 
 public class Controller {
-    public void clickedYourShip(ActionEvent actionEvent, Label texter) {
+    public static void submitmsg(TextArea text) {
+        String usermessage = text.getText();
+    }
+
+    public static void clickedYourShip(Label texter) {
         texter.setText("This is your ship.");
     }
 
-    public void clickedTheirShip(ActionEvent actionEvent, Label texter) {
+    public static void clickedTheirShip(Label texter) {
         texter.setText("This is your friend's ship.");
     }
 

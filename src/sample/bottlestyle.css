@@ -67,3 +67,13 @@
 -fx-padding:150 150;
 -fx-background-position: center 1px;
 }
+
+#s3
+{
+-fx-background-color:lightblue;
+}
+
+#crit,#usebx
+{
+-fx-background-color:white;
+}

@@ -2,7 +2,7 @@ package sample;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.TextField;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
@@ -16,7 +16,7 @@ public class Main extends Application {
     //add the police song message in a bottle or one of the instrumentals or both
     @Override
     public void start(Stage primaryStage)throws Exception {
-        primaryStage.setTitle("SceneTest");
+        primaryStage.setTitle("Message In A Bottle");
         Label desc = new Label();
 //Scene 1
         Pane layout1 = new Pane();
@@ -104,6 +104,8 @@ public class Main extends Application {
         bot4.setOnAction(event -> Controller.clickedButton(desc, b1stat, 4, primaryStage, scene3));
         bot5.setOnAction(event -> Controller.clickedButton(desc, b1stat, 5, primaryStage, scene3));
         bot6.setOnAction(event -> Controller.clickedButton(desc, b1stat, 6, primaryStage, scene3));
+        yourship.setOnAction(event -> Controller.clickedYourShip(desc));
+        theirship.setOnAction(event -> Controller.clickedTheirShip(desc));
 
 //Scene 3
         Label label3 = new Label("This is the third scene");
@@ -111,11 +113,28 @@ public class Main extends Application {
         button3.setOnAction(event -> primaryStage.setScene(scene4));
         Pane layout3 = new Pane();
 
-        TextField usermessage = new TextField();
 
-        layout3.getChildren().addAll(label3, button3, usermessage);
+
+        TextArea userbox = new TextArea("Start writing your message here!");
+        Label criteria = new Label("Run, you fools.");
+        userbox.setId("usebx");
+        criteria.setId("crit");
+        userbox.setWrapText(true);
+        userbox.relocate(50,50);
+        userbox.resize(300,1100);
+        criteria.relocate(600,50);
+        criteria.resize(300,1100);
+
+        Button submitMessage = new Button("Send Message");
+        submitMessage.setId("submsg");
+        submitMessage.setOnAction(event -> Controller.submitmsg(userbox));
+
+        layout3.getChildren().addAll(label3, button3, userbox, criteria);
         scene3= new Scene(layout3,1200,800);
         layout3.setId("s3");
+
+
+
 
         //Scene 4
         Label label4 = new Label("This is the fourth scene");
