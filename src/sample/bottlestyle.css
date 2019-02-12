@@ -1,7 +1,48 @@
+#s1
+{
+-fx-background-image:url("/sample/Pictures/bottlestartscreen.jpg");
+-fx-background-size: 1200px;
+}
+
+#sbtwn
+{
+-fx-background-image:url("/sample/Pictures/introbackground.jpg");
+-fx-background-size: 1200px;
+}
+
+#in,#op
+{
+-fx-background-color:white;
+-fx-padding:20 10;
+-fx-border-radius:60px;
+}
+
+#op
+{
+-fx-font-size:72;
+}
+
+#in
+{
+-fx-font-size:34;
+}
+
 #s2
 {
 -fx-background-image:url("/sample/Pictures/ocean.jpg");
 -fx-background-size: 118px;
+}
+
+#s4
+{
+-fx-background-image:url("/sample/Pictures/treasure.jpg");
+}
+
+#st, #stoff
+{
+-fx-background-color:white;
+-fx-padding:30 125;
+-fx-font-size:24;
 }
 
 #b1,#b2,#b3,#b4,#b5,#b6
@@ -11,12 +52,18 @@
 -fx-background-size: 118px;
 }
 
-#yours, #theirs,#treasure
+#yours, #theirs
 {
 -fx-background-image:url("/sample/Pictures/ship.png");
--fx-background-size: 300px;
--fx-padding:80;
--fx-background-position: center 8px;
+-fx-background-size: 100px;
+-fx-padding:30 40;
+-fx-background-position: center 1px;
 }
 
-#des
+#treasure
+{
+-fx-background-image:url("/sample/Pictures/island.jpg");
+-fx-background-size: 300px;
+-fx-padding:150 150;
+-fx-background-position: center 1px;
+}

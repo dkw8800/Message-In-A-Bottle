@@ -10,7 +10,7 @@ import javafx.scene.control.Label;
 
 public class Main extends Application {
 
-    Scene scene1, scene2, scene3, scene4;
+    Scene scene1, scenebtwn, scene2, scene3, scene4;
     boolean b1stat, b2stat, b3stat, b4stat, b5stat, b6stat;
 
     //add the police song message in a bottle or one of the instrumentals or both
@@ -19,14 +19,29 @@ public class Main extends Application {
         primaryStage.setTitle("SceneTest");
         Label desc = new Label();
 //Scene 1
-        Label label1= new Label("This is the first scene");
-        Button button1= new Button("Go to scene 2");
-        button1.setOnAction(event -> primaryStage.setScene(scene2));
         Pane layout1 = new Pane();
-        layout1.getChildren().addAll(label1, button1);
+        Label opening = new Label("Message In A Bottle");
+        Button start = new Button("Start");
+        opening.relocate(300,300);
+        start.relocate(450,550);
+        start.setOnAction(event -> primaryStage.setScene(scenebtwn));
+        layout1.getChildren().addAll(opening, start);
+        opening.setId("op");
+        start.setId("st");
         scene1= new Scene(layout1, 1200, 800);
         layout1.setId("s1");
 
+        Pane layoutbtwn = new Pane();
+        Label instructions = new Label("You and your friend are looking for treasure! \n Click the next bottle to read its message rules. \n Send messages according to the rules and \n figure out the location of the treasure!");
+        Button setoff = new Button("Set off!");
+        instructions.relocate(250,200);
+        setoff.relocate(450,550);
+        setoff.setOnAction(event -> primaryStage.setScene(scene2));
+        layoutbtwn.getChildren().addAll(instructions,setoff);
+        scenebtwn = new Scene(layoutbtwn, 1200, 800);
+        setoff.setId("stoff");
+        instructions.setId("in");
+        layoutbtwn.setId("sbtwn");
 //Scene 2
         Label label2= new Label("This is the second scene");
         Button button2= new Button("Go to scene 3");
@@ -53,9 +68,9 @@ public class Main extends Application {
         yourship.setId("yours");
         theirship.setId("theirs");
         treasureisland.setId("treasure");
-        yourship.relocate(100.0,400.0);
+        yourship.relocate(50.0,400.0);
         theirship.relocate(300.0,100.0);
-        treasureisland.relocate(1000,500);
+        treasureisland.relocate(850,500);
         //ENDOFMAINGAMESETUP
 
 
@@ -112,6 +127,7 @@ public class Main extends Application {
         layout4.setId("s4");
 
         layout1.getStylesheets().add("/sample/bottlestyle.css");
+        layoutbtwn.getStylesheets().add("/sample/bottlestyle.css");
         layout2.getStylesheets().add("/sample/bottlestyle.css");
         layout3.getStylesheets().add("/sample/bottlestyle.css");
         layout4.getStylesheets().add("/sample/bottlestyle.css");
