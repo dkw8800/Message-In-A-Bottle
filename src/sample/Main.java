@@ -11,8 +11,7 @@ import javafx.scene.control.Label;
 public class Main extends Application {
 
     Scene scene1, scenebtwn, scene2, scene3, scene4;
-    boolean b1stat, b2stat, b3stat, b4stat, b5stat, b6stat;
-    //add the police song message in a bottle or one of the instrumentals or both
+    //add the police song message in a bottle or one of the instrumentals or both?
     @Override
     public void start(Stage primaryStage)throws Exception {
         primaryStage.setTitle("Message In A Bottle");
@@ -104,12 +103,12 @@ public class Main extends Application {
         scene2= new Scene(layout2,1200,800);
 
 
-        bot1.setOnAction(event -> Controller.clickedButton(desc, b1stat, 1, primaryStage, scene3,bot1,criteria));
-        bot2.setOnAction(event -> Controller.clickedButton(desc, b2stat, 2, primaryStage, scene3,bot2,criteria));
-        bot3.setOnAction(event -> Controller.clickedButton(desc, b3stat, 3, primaryStage, scene3,bot3,criteria));
-        bot4.setOnAction(event -> Controller.clickedButton(desc, b4stat, 4, primaryStage, scene3,bot4,criteria));
-        bot5.setOnAction(event -> Controller.clickedButton(desc, b5stat, 5, primaryStage, scene3,bot5,criteria));
-        bot6.setOnAction(event -> Controller.clickedButton(desc, b6stat, 6, primaryStage, scene3,bot6,criteria));
+        bot1.setOnAction(event -> Controller.clickedButton(desc,1, primaryStage, scene3,bot1,criteria));
+        bot2.setOnAction(event -> Controller.clickedButton(desc,2, primaryStage, scene3,bot2,criteria));
+        bot3.setOnAction(event -> Controller.clickedButton(desc,3, primaryStage, scene3,bot3,criteria));
+        bot4.setOnAction(event -> Controller.clickedButton(desc,4, primaryStage, scene3,bot4,criteria));
+        bot5.setOnAction(event -> Controller.clickedButton(desc,5, primaryStage, scene3,bot5,criteria));
+        bot6.setOnAction(event -> Controller.clickedButton(desc,6, primaryStage, scene3,bot6,criteria));
         yourship.setOnAction(event -> Controller.clickedYourShip(desc));
         theirship.setOnAction(event -> Controller.clickedTheirShip(desc));
         treasureisland.setOnAction(event -> Controller.clickedIsland(desc));

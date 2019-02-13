@@ -31,7 +31,7 @@ public class Controller {
         texter.setText("Could the treasure be here?");
     }
 
-    public static void clickedButton(Label texter, boolean opened, int bottle, Stage stage, Scene scene, Button button, Label rulelist) {
+    public static void clickedButton(Label texter, int bottle, Stage stage, Scene scene, Button button, Label rulelist) {
 
         if(openedbtles[bottle] == 0) {
             texter.setText("Let's open bottle " + bottle + "!");
@@ -40,7 +40,7 @@ public class Controller {
             //wait(2000);
             //setanimation
             openedbtles[bottle] = bottle;
-            String[] botrles = Message.setRules(bottle+1,bottle);
+            String[] botrles = Message.setRules(bottle+2,bottle);
             String rulestring = "Bottle Rules \n";
             for(int i = 0; i < botrles.length;i++) {
                rulestring = rulestring + botrles[i] + "\n";
