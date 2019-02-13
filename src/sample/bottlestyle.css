@@ -80,6 +80,16 @@
 -fx-padding:30px;
 }
 
+#usebx
+{
+-fx-font-size:16;
+}
+
+#crit
+{
+-fx-font-size:20;
+}
+
 #dsc
 {
 -fx-background-color:white;

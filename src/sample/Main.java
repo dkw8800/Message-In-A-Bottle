@@ -126,9 +126,8 @@ public class Main extends Application {
         userbox.setId("usebx");
         criteria.setId("crit");
         userbox.setWrapText(true);
-        userbox.relocate(50,50);
-        userbox.resize(300,1100);
-        criteria.relocate(600,50);
+        userbox.relocate(10,50);
+        criteria.relocate(670,50);
         criteria.resize(300,1100);
 
         Button submitMessage = new Button("Send Message");
