@@ -99,15 +99,17 @@ public class Main extends Application {
         desc.setText("Time to start your voyage! Click on the first bottle.");
         desc.setId("dsc");
 
+        Label criteria = new Label("Bottle Rules \n");
+
         scene2= new Scene(layout2,1200,800);
 
 
-        bot1.setOnAction(event -> Controller.clickedButton(desc, b1stat, 1, primaryStage, scene3,bot1));
-        bot2.setOnAction(event -> Controller.clickedButton(desc, b2stat, 2, primaryStage, scene3,bot2));
-        bot3.setOnAction(event -> Controller.clickedButton(desc, b3stat, 3, primaryStage, scene3,bot3));
-        bot4.setOnAction(event -> Controller.clickedButton(desc, b4stat, 4, primaryStage, scene3,bot4));
-        bot5.setOnAction(event -> Controller.clickedButton(desc, b5stat, 5, primaryStage, scene3,bot5));
-        bot6.setOnAction(event -> Controller.clickedButton(desc, b6stat, 6, primaryStage, scene3,bot6));
+        bot1.setOnAction(event -> Controller.clickedButton(desc, b1stat, 1, primaryStage, scene3,bot1,criteria));
+        bot2.setOnAction(event -> Controller.clickedButton(desc, b2stat, 2, primaryStage, scene3,bot2,criteria));
+        bot3.setOnAction(event -> Controller.clickedButton(desc, b3stat, 3, primaryStage, scene3,bot3,criteria));
+        bot4.setOnAction(event -> Controller.clickedButton(desc, b4stat, 4, primaryStage, scene3,bot4,criteria));
+        bot5.setOnAction(event -> Controller.clickedButton(desc, b5stat, 5, primaryStage, scene3,bot5,criteria));
+        bot6.setOnAction(event -> Controller.clickedButton(desc, b6stat, 6, primaryStage, scene3,bot6,criteria));
         yourship.setOnAction(event -> Controller.clickedYourShip(desc));
         theirship.setOnAction(event -> Controller.clickedTheirShip(desc));
         treasureisland.setOnAction(event -> Controller.clickedIsland(desc));
@@ -121,7 +123,7 @@ public class Main extends Application {
 
 
         TextArea userbox = new TextArea("Start writing your message here!");
-        Label criteria = new Label("Bottle Rules \n");
+        //Label criteria = new Label("Bottle Rules \n");
         userbox.setId("usebx");
         criteria.setId("crit");
         userbox.setWrapText(true);

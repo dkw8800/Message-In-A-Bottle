@@ -31,16 +31,21 @@ public class Controller {
         texter.setText("Could the treasure be here?");
     }
 
-    public static void clickedButton(Label texter, boolean opened, int bottle, Stage stage, Scene scene, Button button) {
+    public static void clickedButton(Label texter, boolean opened, int bottle, Stage stage, Scene scene, Button button, Label rulelist) {
 
         if(openedbtles[bottle] == 0) {
             texter.setText("Let's open bottle " + bottle + "!");
             button.setOpacity(0.3);
-            opened = true;
             //setanimation
             //wait(2000);
             //setanimation
             openedbtles[bottle] = bottle;
+            String[] botrles = Message.setRules(bottle+1,bottle);
+            String rulestring = "Bottle Rules \n";
+            for(int i = 0; i < botrles.length;i++) {
+               rulestring = rulestring + botrles[i] + "\n";
+            }
+            rulelist.setText(rulestring);
             stage.setScene(scene);
         }
         else
