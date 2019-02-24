@@ -10,12 +10,14 @@ import javafx.scene.control.Label;
 
 public class Main extends Application {
 
-    Scene scene1, scenebtwn, scene2, scene3, scene4;
+    Scene scene1, scenebtwn, scene2, scene3, scene4, scene5;
     //add the police song message in a bottle or one of the instrumentals or both?
     @Override
     public void start(Stage primaryStage)throws Exception {
         primaryStage.setTitle("Message In A Bottle");
         Label desc = new Label();
+        Label timer = new Label("m");
+        timer.relocate(100,550);
 //Scene 1
         Pane layout1 = new Pane();
         Label opening = new Label("Message In A Bottle");
@@ -30,9 +32,9 @@ public class Main extends Application {
         layout1.setId("s1");
 
         Pane layoutbtwn = new Pane();
-        Label instructions = new Label("You and your friend are looking for treasure! \n Click the next bottle to read its message rules. \n Send messages according to the rules and \n figure out the location of the treasure!");
+        Label instructions = new Label("You and your friend are looking for treasure! \n Click the next bottle to read its message rules. \n Send messages according to the rules and \n figure out the location of the treasure! \n If you don't follow the rules to write the message, \n you need to pay for the wasted paper. \n If you run out of time or funds, it will be harder \n to find the treasure.");
         Button setoff = new Button("Set off!");
-        instructions.relocate(250,200);
+        instructions.relocate(250,100);
         setoff.relocate(450,550);
         setoff.setOnAction(event -> primaryStage.setScene(scene2));
         layoutbtwn.getChildren().addAll(instructions,setoff);
@@ -94,7 +96,7 @@ public class Main extends Application {
         layout2.setId("s2");
 
         desc.resize(1000,200);
-        desc.relocate(100,700);
+        desc.relocate(100,550);
         desc.setText("Time to start your voyage! Click on the first bottle.");
         desc.setId("dsc");
 
@@ -103,12 +105,12 @@ public class Main extends Application {
         scene2= new Scene(layout2,1200,800);
 
 
-        bot1.setOnAction(event -> Controller.clickedButton(desc,1, primaryStage, scene3,bot1,criteria));
-        bot2.setOnAction(event -> Controller.clickedButton(desc,2, primaryStage, scene3,bot2,criteria));
-        bot3.setOnAction(event -> Controller.clickedButton(desc,3, primaryStage, scene3,bot3,criteria));
-        bot4.setOnAction(event -> Controller.clickedButton(desc,4, primaryStage, scene3,bot4,criteria));
-        bot5.setOnAction(event -> Controller.clickedButton(desc,5, primaryStage, scene3,bot5,criteria));
-        bot6.setOnAction(event -> Controller.clickedButton(desc,6, primaryStage, scene3,bot6,criteria));
+        bot1.setOnAction(event -> Controller.clickedButton(desc,1, primaryStage, scene3,bot1,criteria, timer));
+        bot2.setOnAction(event -> Controller.clickedButton(desc,2, primaryStage, scene3,bot2,criteria, timer));
+        bot3.setOnAction(event -> Controller.clickedButton(desc,3, primaryStage, scene3,bot3,criteria, timer));
+        bot4.setOnAction(event -> Controller.clickedButton(desc,4, primaryStage, scene3,bot4,criteria, timer));
+        bot5.setOnAction(event -> Controller.clickedButton(desc,5, primaryStage, scene3,bot5,criteria, timer));
+        bot6.setOnAction(event -> Controller.clickedButton(desc,6, primaryStage, scene3,bot6,criteria, timer));
         yourship.setOnAction(event -> Controller.clickedYourShip(desc));
         theirship.setOnAction(event -> Controller.clickedTheirShip(desc));
         treasureisland.setOnAction(event -> Controller.clickedIsland(desc));
@@ -130,32 +132,46 @@ public class Main extends Application {
         criteria.relocate(670,50);
         criteria.resize(300,1100);
 
-        Button submitMessage = new Button("Send Message");
-        submitMessage.setId("submsg");
-        submitMessage.setOnAction(event -> Controller.submitmsg(userbox, primaryStage, scene2));
-        submitMessage.relocate(400,550);
-
-        layout3.getChildren().addAll(label3, button3, userbox, criteria, submitMessage);
-        scene3= new Scene(layout3,1200,800);
-        layout3.setId("s3");
-
-
-
+        Label missing = new Label();
+        missing.relocate(10,350);
+        missing.setId("mss");
 
         //Scene 4
         Label label4 = new Label("This is the fourth scene");
-        Button button4 = new Button("Go to scene 1");
-        button4.setOnAction(event -> primaryStage.setScene(scene1));
+        Button button4 = new Button("Go to scene 5");
+        button4.setOnAction(event -> primaryStage.setScene(scene5));
         Pane layout4 = new Pane();
         layout4.getChildren().addAll(label4, button4);
         scene4= new Scene(layout4,1200,800);
         layout4.setId("s4");
+
+
+        Label label5 = new Label("This is the fifth scene");
+        Label ending = new Label("endtexthere");
+        Button button5 = new Button("Go to scene 1");
+        button5.setOnAction(event -> primaryStage.setScene(scene1));
+        Pane layout5 = new Pane();
+        layout5.getChildren().addAll(label5, button5, ending);
+        scene5 = new Scene(layout5,1200,800);
+        layout5.setId("s5");
+
+        Button submitMessage = new Button("Send Message");
+        submitMessage.setId("submsg");
+        submitMessage.setOnAction(event -> Controller.submitmsg(userbox, primaryStage, scene2, ending, missing, desc));
+        submitMessage.relocate(400,550);
+        ending.relocate(100,100);
+        ending.setWrapText(true);
+
+        layout3.getChildren().addAll(label3, button3, userbox, criteria, submitMessage, missing, timer);
+        scene3= new Scene(layout3,1200,800);
+        layout3.setId("s3");
 
         layout1.getStylesheets().add("/sample/bottlestyle.css");
         layoutbtwn.getStylesheets().add("/sample/bottlestyle.css");
         layout2.getStylesheets().add("/sample/bottlestyle.css");
         layout3.getStylesheets().add("/sample/bottlestyle.css");
         layout4.getStylesheets().add("/sample/bottlestyle.css");
+        layout5.getStylesheets().add("/sample/bottlestyle.css");
 
         primaryStage.setScene(scene1);
         primaryStage.show();

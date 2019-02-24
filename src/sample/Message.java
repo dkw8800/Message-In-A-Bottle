@@ -1,10 +1,14 @@
 package sample;
 
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class Message {
-    public static String[] rulescant = {"a","b","d","e","f","h","i","r","t","u","w", "You can't use the word the","You can't use the word it","You can't use the word water","You can't use the word ship","You can't use the word fight","You have to use the word dance", "You have to use the word tea","You have to use the word party","You have to use the word hopscotch","You have to use the word painted"};
+    public static String[] rulescant = {"z","b","m","k","v","h","q","r","t","u","y", "there","it","water","ship","fight","dancing", "tea party","birthday party","hopscotch","painted"};
     //public static String[] rulescantletters = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
     //public static String[] rulescantphrases = {"You can't use the word the","You can't use the word it","You can't use the word water","You can't use the word ship","You can't use the word fight","You have to use the word dance"};
     //public static String[] rulescanphrases = {"You have to use the word tea","You have to use the word party","You have to use the word hopscotch","You have to use the word painted"};
@@ -14,17 +18,7 @@ public class Message {
     public static String[] phrases4 = {"found the kraken by accident", "played a game of chess against a ","spotted a few narwhals and said ","decided to do some whale watching and realized that ", "lost a few of my ","faced some whirlpools and","can't find my ","drifted away from "};
     public static String[] phrases5 = {"had a cannon fight with nearby pirates","had to rescue a sea serpent from ","received a gift for ","accidentally ran over a sea serpent and ","closer to the island by ", "should get there around ","realized I wanted to ","lost my "};
     public static String[] phrases6 = {"reached the island beaches","fought the king crab off with a ","started a campfire and sang ","found some fake treasure chests","drank some bad coconut milk","started missing my","forgot that I had a ","needed to find a ","couldn't find my "};
-
-    public Message(String[] rules, String[] qualifiers, String[] phrases, int wordcount)
-    {
-
-    }
-
-    public void setMessage()
-    {
-
-        int randomsetter = (int)Math.random()*rulescant.length;
-    }
+    private static String[] basis = new String[10];
 
     public static String[] setRules(int rulenum, int bottle)
     {
@@ -37,9 +31,15 @@ public class Message {
             {
                 addstring = "You can't use the letter " + rulescant[randomsetter];
             }
-            else {
-                addstring = rulescant[randomsetter];
+            else if (randomsetter < 16){
+                addstring = "You can't use the word " + rulescant[randomsetter];
             }
+            else
+            {
+                addstring = "You have to use the word " + rulescant[randomsetter];
+
+            }
+            basis[i] = rulescant[randomsetter];
             setrules[i] = addstring;
         }
 
@@ -66,7 +66,14 @@ public class Message {
                 norepeats(setrules,rulenum,phrases6);
             }
 
-
+        for(int k = 3; k < setrules.length; k++)
+        {
+            basis[k] = setrules[k];
+        }
+        for(int k = setrules.length; k < basis.length; k++)
+        {
+            basis[k] = "ddd";
+        }
         return setrules;
     }
 
@@ -89,5 +96,30 @@ public class Message {
             setrules[i + 2] = phrases[phrasechoice[i]];
         }
         return setrules;
+    }
+
+    public static int checkrules(TextArea text, Label missed)
+    {
+        String fullmsg = text.getText();
+        String[] eachword = fullmsg.split(" ");
+        String missing = "";
+        for(int i = 0; i < basis.length;i++) {
+            //if(basis[i].length() < 7 && !fullmsg.contains(basis[i]) || basis[i].length() >= 7 && fullmsg.contains(basis[i]))
+            if (basis[i].length() >= 7 && fullmsg.indexOf(basis[i]) != -1 || basis[i].length() < 7 && fullmsg.indexOf(basis[i]) == -1) {
+            }
+            if (basis[i].length() < 7 && fullmsg.indexOf(basis[i]) != -1) {
+                missing = missing + "\n " + "Sorry, you cannot include the word " + basis[i];
+            }
+            if (basis[i].length() >= 7 && fullmsg.indexOf(basis[i]) == -1) {
+                missing = missing + "\n " + "Sorry, you need to include the word " + basis[i];
+            }
+        }
+        missed.setText(missing);
+        String checker = missed.getText();
+        if(checker.contains("Sorry"))
+        {
+            return 0;
+        }
+        return 1;
     }
 }
