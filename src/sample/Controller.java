@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
@@ -16,29 +17,39 @@ public class Controller {
     public static int[] openedbtles = {0, 0, 0, 0, 0, 0, 0};
     public static String[] sentmsgs = new String[6];
     public static int btleopened;
-    public static int points = 600;
-    public static int remtime;
     public static int bottlenow = 1;
     public static boolean on = false;
     public static int timeneeded;
+    public static int points = 600;
 
-    public static void submitmsg(TextArea text, Stage stage, Scene scene, Label end, Label missed, Label desc) {
+    public static void submitmsg(TextArea text, Stage stage, Scene scene, Label end, Label missed, Label desc, Label funds, Label results, Scene resultscene) {
         String usermessage = text.getText();
         sentmsgs[btleopened] = usermessage;
         //ifrulesaremet
-        if(Message.checkrules(text, missed) == 0)
+        if(Message.checkrules(text, missed,bottlenow) == 0)
         {
             points = points - 50;
             return;
         }
         on = false;
-        points = points + 10 * remtime;
+        points = points + timeneeded;
         text.clear();
         desc.setText("Good job! You sent off the bottle!");
         btleopened++;
         String fullstory = changestory();
         end.setText(fullstory);
         stage.setScene(scene);
+        funds.setText("Funds: " + points);
+        if(bottlenow == 7)
+        {
+            //animation?
+            if(points < 300) { results.setText("You ran out of money, and had to turn back. \n You didn't get to find any treasure, and instead ended in debt."); }
+            else {results.setText("You had enough resources left to stay and scour \n the island long enough to find the treasure! \n Your friend and your crew are all proud and rich and in your debt.");}
+            results.setPrefWidth(800);
+            results.setWrapText(true);
+            stage.setScene(resultscene);
+        }
+        System.out.println(points);
     }
 
     public static String changestory()
@@ -104,13 +115,13 @@ public class Controller {
         }
     }
 
-    public static void settimr(int bottle, Label timeshow) {
+    public static void settier(int bottle, Label timeshow) throws InterruptedException {
         int timeneeded = bottle + 1;
         timeneeded = timeneeded*100;
         timeshow.setText(String.valueOf(timeneeded));
         while(on == true) {
-            timeneeded--;
             timeshow.setText(String.valueOf(timeneeded));
+            timeneeded--;
             if(timeneeded == 0)
             {
                 return;
@@ -121,9 +132,10 @@ public class Controller {
     public static void settimer(int bottle, Label timeshow) {
         timeneeded = 100*bottle;
         Timer messset = new Timer();
-        TimerTask cdown = new TimerTask(){public void run() {timeneeded--; timeshow.setText(String.valueOf(timeneeded));}};
+        TimerTask cdown = new TimerTask(){ public void run() { Platform.runLater(new Runnable() {public void run() {timeneeded--; timeshow.setText(String.valueOf(timeneeded));}});}};
         messset.scheduleAtFixedRate(cdown,1000,1000);
-        Controller ct = new Controller();
-        ct.start();
     }
+
+    public static int getfunds()
+    {return points;}
 }
