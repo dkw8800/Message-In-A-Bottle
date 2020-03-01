@@ -8,17 +8,18 @@ import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class Main extends Application {
 
-    Scene scene1, scenebtwn, scene2, scene3, scene4, scene5;
+    Scene scene1, scenebtwn, scene2, scene3, businessPage, housePage, storePage, scene4, scene5;
     //add the police song message in a bottle or one of the instrumentals or both?
     @Override
     public void start(Stage primaryStage)throws Exception {
-        primaryStage.setTitle("Message In A Bottle");
+        primaryStage.setTitle("We Work");
         Label desc = new Label();
-        Label timer = new Label("Timer \n Starting Now!");
+        Label timer = new Label("Action Desc!");
         timer.setId("timer");
         timer.relocate(100,550);
         Label funds = new Label();
@@ -26,52 +27,52 @@ public class Main extends Application {
         funds.setId("funds");
         funds.setText("Funds: " + Controller.getfunds());
 //Scene 1
-        Pane layout1 = new Pane();
-        Label opening = new Label("Message In A Bottle");
+        Pane titlepage = new Pane();
+        Label opening = new Label("We Work");
         Button start = new Button("Start");
-        opening.relocate(300,300);
+        opening.relocate(440,300);
         start.relocate(450,550);
         start.setOnAction(event -> primaryStage.setScene(scenebtwn));
-        layout1.getChildren().addAll(opening, start);
+        titlepage.getChildren().addAll(opening, start);
         opening.setId("op");
         start.setId("st");
-        scene1= new Scene(layout1, 1200, 800);
-        layout1.setId("s1");
+        scene1= new Scene(titlepage, 1200, 800);
+        titlepage.setId("s1");
 
-        Pane layoutbtwn = new Pane();
-        Label instructions = new Label("You and your friend are looking for treasure! \n Click the next bottle to read its message rules. \n Send messages according to the rules and \n figure out the location of the treasure! \n If you don't follow the rules to write the message, \n you need to pay for the wasted paper. \n If you run out of time or funds, it will be harder \n to find the treasure.");
-        Button setoff = new Button("Set off!");
+        Pane intropage = new Pane();
+        Label instructions = new Label("You have just quit because of your sexist boss. \n You plan to start your own business instead! \n Hire and fire employees and deal with their \n situations. Invest in items from the store or \n advertisements to boost stats. \n Try to get your business to the top!");
+        Button setoff = new Button("Let's go!");
         instructions.relocate(250,100);
         setoff.relocate(450,550);
         setoff.setOnAction(event -> primaryStage.setScene(scene2));
-        layoutbtwn.getChildren().addAll(instructions,setoff);
-        scenebtwn = new Scene(layoutbtwn, 1200, 800);
+        intropage.getChildren().addAll(instructions,setoff);
+        scenebtwn = new Scene(intropage, 1200, 800);
         setoff.setId("stoff");
         instructions.setId("in");
-        layoutbtwn.setId("sbtwn");
+        intropage.setId("sbtwn");
 //Scene 2
         Label label2= new Label("This is the second scene");
         Button button2= new Button("Go to scene 3");
         button2.setOnAction(event -> primaryStage.setScene(scene3));
 
         //MAINGAMESETUP
-        Button bot1= new Button("BOTTLE1");
-        Button bot2= new Button("BOTTLE2");
-        Button bot3= new Button("BOTTLE3");
-        Button bot4= new Button("BOTTLE4");
-        Button bot5= new Button("BOTTLE5");
-        Button bot6= new Button("BOTTLE6");
+        Button businessbutton= new Button("Business");
+        Button storebutton= new Button("Store");
+        Button homebutton= new Button("Home");
+        //Button bot4= new Button("BOTTLE4");
+        //Button bot5= new Button("BOTTLE5");
+        //Button bot6= new Button("BOTTLE6");
         Button yourship = new Button("");
         Button theirship = new Button("");
         Button treasureisland = new Button("");
         Button bottleinst = new Button("                    \n                     \n                     \n                     \n");
 
-        bot1.setId("b1");
-        bot2.setId("b2");
-        bot3.setId("b3");
-        bot4.setId("b4");
-        bot5.setId("b5");
-        bot6.setId("b6");
+        businessbutton.setId("b1");
+        storebutton.setId("b2");
+        homebutton.setId("b3");
+        //bot4.setId("b4");
+        //bot5.setId("b5");
+        //bot6.setId("b6");
 
         yourship.setId("yours");
         theirship.setId("theirs");
@@ -85,57 +86,63 @@ public class Main extends Application {
         //ENDOFMAINGAMESETUP
 
 
-        Pane layout2 = new Pane();
-        layout2.getChildren().addAll(funds, label2, button2, bot1, bot2, bot3, bot4, bot5, bot6,yourship,theirship,treasureisland,desc,bottleinst);
+        Pane homescreen = new Pane();
+        homescreen.getChildren().addAll(button2, businessbutton, storebutton, homebutton, desc);
 
-        bot1.relocate(215.0,215.0);
-        bot1.resize(70.0,70.0);
-        bot2.relocate(327,365);
-        bot2.resize(70.0,70.0);
-        bot3.relocate(510.0,145.0);
-        bot3.resize(70.0,70.0);
-        bot4.relocate(613.0,338.0);
-        bot4.resize(70.0,70.0);
-        bot5.relocate(792.0,215.0);
-        bot5.resize(70.0,70.0);
-        bot6.relocate(933.0,390.0);
-        bot6.resize(70.0,70.0);
-        layout2.setId("s2");
+        businessbutton.relocate(800,350);
+        businessbutton.resize(200,200);
+        storebutton.relocate(300,350);
+        storebutton.resize(200,200);
+        homebutton.relocate(550,500);
+        homebutton.resize(200,200);
+        //bot4.relocate(613.0,338.0);
+        //bot4.resize(70.0,70.0);
+        //bot5.relocate(792.0,215.0);
+        //bot5.resize(70.0,70.0);
+        //bot6.relocate(933.0,390.0);
+        //bot6.resize(70.0,70.0);
+        homescreen.setId("s2");
 
         desc.resize(1000,200);
-        desc.relocate(100,550);
-        desc.setText("Time to start your voyage! Click on the first bottle.");
+        desc.relocate(450,100);
+        desc.setText("Month 1 Of Your Business");
         desc.setId("dsc");
-        Label criteria = new Label("Bottle Rules \n");
+        Label criteria = new Label("testthis");
+        Label businesslabel = new Label("My Business \n");
+        Label storelabel = new Label("Items You Can Buy \n");
+        Label houselabel = new Label("My House \n");
 
-        scene2= new Scene(layout2,1200,800);
+        scene2= new Scene(homescreen,1200,800);
 
-        bot1.setOnAction(e -> Controller.clickedButton(desc, 1, primaryStage, scene3, bot1, criteria, timer));
-        bot2.setOnAction(e -> Controller.clickedButton(desc, 2, primaryStage, scene3, bot2, criteria, timer));
-        bot3.setOnAction(e -> Controller.clickedButton(desc, 3, primaryStage, scene3, bot3, criteria, timer));
-        bot4.setOnAction(e -> Controller.clickedButton(desc, 4, primaryStage, scene3, bot4, criteria, timer));
-        bot5.setOnAction(e -> Controller.clickedButton(desc, 5, primaryStage, scene3, bot5, criteria, timer));
-        bot6.setOnAction(e -> Controller.clickedButton(desc, 6, primaryStage, scene3, bot6, criteria, timer));
+        businessbutton.setOnAction(e -> Controller.clickedLocation(desc, "My Business", primaryStage, scene3));
+        storebutton.setOnAction(e -> Controller.clickedLocation(desc, "Local Store", primaryStage, storePage));
+        homebutton.setOnAction(e -> Controller.clickedLocation(desc, "My House", primaryStage, housePage));
+        //bot4.setOnAction(e -> Controller.clickedButton(desc, 4, primaryStage, scene3, bot4, criteria, timer));
+        //bot5.setOnAction(e -> Controller.clickedButton(desc, 5, primaryStage, scene3, bot5, criteria, timer));
+        //bot6.setOnAction(e -> Controller.clickedButton(desc, 6, primaryStage, scene3, bot6, criteria, timer));
 
 
-        yourship.setOnAction(e -> Controller.clickedYourShip(desc));
-        theirship.setOnAction(e -> Controller.clickedTheirShip(desc));
-        treasureisland.setOnAction(e -> Controller.clickedIsland(desc));
+        //yourship.setOnAction(e -> Controller.clickedStore(desc));
+        //theirship.setOnAction(e -> Controller.clickedHome(desc));
+        //treasureisland.setOnAction(e -> Controller.cli(desc));
         bottleinst.setOnAction(e -> Controller.clickedmain(desc));
 //Scene 3
-        Label label3 = new Label("This is the third scene");
+        Label businessPage = new Label("This is the third scene");
         Button button3 = new Button("Go to scene 4");
         button3.setOnAction(e -> primaryStage.setScene(scene4));
         Pane layout3 = new Pane();
 
 
-
-        TextArea userbox = new TextArea("Start writing your message here!");
+        //TextArea userbox = new TextArea("Start writing your message here!");
         //Label criteria = new Label("Bottle Rules \n");
-        userbox.setId("usebx");
+        //userbox.setId("usebx");
+        //desc.resize(1000,200);
+        //desc.relocate(450,100);
+        desc.setText("Store");
         criteria.setId("crit");
-        userbox.setWrapText(true);
-        userbox.relocate(10,50);
+        Rectangle r = new Rectangle(100, 100, 1366, 1366);
+        //userbox.setWrapText(true);
+        //userbox.relocate(10,50);
         criteria.relocate(670,50);
         criteria.resize(300,1100);
 
@@ -178,21 +185,24 @@ public class Main extends Application {
 
         Button submitMessage = new Button("Send Message");
         submitMessage.setId("submsg");
-        submitMessage.setOnAction(e -> Controller.submitmsg(userbox, primaryStage, scene2, ending, missing, desc, funds, end,scene4));
+        //submitMessage.setOnAction(e -> Controller.submitmsg(userbox, primaryStage, scene2, ending, missing, desc, funds, end,scene4));
         submitMessage.relocate(400,550);
         ending.relocate(100,100);
         ending.setWrapText(true);
 
-        layout3.getChildren().addAll(label3, button3, userbox, criteria, submitMessage, missing, timer);
+        layout3.getChildren().addAll(businessPage, button3, desc, criteria, submitMessage, missing, timer);
         scene3= new Scene(layout3,1200,800);
         layout3.setId("s3");
 
-        layout1.getStylesheets().add("/sample/bottlestyle.css");
-        layoutbtwn.getStylesheets().add("/sample/bottlestyle.css");
-        layout2.getStylesheets().add("/sample/bottlestyle.css");
+        titlepage.getStylesheets().add("/sample/bottlestyle.css");
+        intropage.getStylesheets().add("/sample/bottlestyle.css");
+        homescreen.getStylesheets().add("/sample/bottlestyle.css");
         layout3.getStylesheets().add("/sample/bottlestyle.css");
         layout4.getStylesheets().add("/sample/bottlestyle.css");
         layout5.getStylesheets().add("/sample/bottlestyle.css");
+        //storePage.getStylesheets().add("/sample/bottlestyle.css");
+        //housePage.getStylesheets().add("/sample/bottlestyle.css");
+        businessPage.getStylesheets().add("/sample/bottlestyle.css");
 
         primaryStage.setScene(scene1);
         primaryStage.show();

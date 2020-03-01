@@ -63,18 +63,19 @@ public class Controller {
         return fullstory;
     }
 
-    public static void clickedYourShip(Label texter) {
-        texter.setText("This is your ship.");
+    public static void clickedHome(Label texter) {
+        texter.setText("My Home");
     }
 
-    public static void clickedTheirShip(Label texter) {
-        texter.setText("This is your friend's ship.");
+    public static void clickedLocation(Label texter, String string, Stage stage, Scene scene) {
+        texter.setText(string);
+        stage.setScene(scene);
     }
 
-    public static void clickedmain(Label texter) {texter.setText("Click on the next bottle."); }
+    public static void clickedmain(Label texter) {texter.setText("Month 1 of Your Business"); }
 
-    public static void clickedIsland(Label texter) {
-        texter.setText("Could the treasure be here?");
+    public static void clickedStore(Label texter) {
+        texter.setText("Local Store");
     }
 
     public static void clickedButton(Label texter, int bottle, Stage stage, Scene scene, Button button, Label rulelist, Label timer) {
